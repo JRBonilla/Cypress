@@ -3,6 +3,7 @@ var lat, lng;
 var currentPosition;
 var currentLat, currentLng;
 var controlDiv, control;
+var reportJSON;
 
 var popupReport = document.getElementById('reportPopup');
 var span = document.getElementsByClassName("close")[0];
@@ -48,12 +49,64 @@ function initMap() {
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
 	
 	//Test markers
-	var temp = addMarker(43.504736854976954, -79.969482421875, "test1", "40454f");
-	addMarker(43.71950494269107, -79.365234375, "test2", "0047ba");
-	addMarker(43.824619821317356, -79.1070556640625, "test3", "ba0303");
-	//Change first marker from grey to red
-	setMarkerColor(temp, "ba0303");
+	//0047ba = blue
+	//ba0303 = red
+	//40454f = grey
+	//00ba00 = green
 	
+	//var temp = addMarker(43.504736854976954, -79.969482421875, "test1", "40454f");
+	//addMarker(43.71950494269107, -79.365234375, "test2", "0047ba");
+	//addMarker(43.824619821317356, -79.1070556640625, "test3", "ba0303");
+	//Change first marker from grey to red
+	//setMarkerColor(temp, "ba0303");
+	
+	//Read the reports from the json file
+	readReports(function(response) {
+		//console.log("The contents of reports.json");
+		//console.log(response);
+		reportJSON = JSON.parse(response);
+		displayMarkers(reportJSON);
+	});
+
+	
+}
+
+function displayMarkers(reportJSON) {
+	reportJSON.reports.forEach(function(entry) {
+		var latJSON = entry.report[4].lat;
+		var lngJSON = entry.report[5].lng;
+		var description = entry.report[2].description;
+		var probType = entry.report[1].probType;
+		var reportStatus = entry.report[0].reportStatus;
+		addMarker(latJSON, lngJSON, description, reportStatus);
+	}); 
+}
+
+function saveReport() {
+	var latJSON = currentLat;
+	var lngJSON = currentLng;
+	var description = document.getElementById("description").value;
+	var probType = document.getElementById("type").value;
+	var reportStatus = document.getElementById("status").value;
+	var email = document.getElementById("email").value
+	var newObj = {report: [{"reportStatus": reportStatus},{"probType": probType},{"description": description},{"email": email},{"lat": latJSON},{"lng": lngJSON}]};
+	resetForm();
+	reportJSON.reports.push(newObj);
+	//console.log(reportJSON);
+	
+	/*var fs = require('fs');
+	fs.writeFile("js/reports.json", newObj, function(error) {
+		if(error) {
+			return console.log(error);
+		}
+		
+		console.log("The file was saved!");
+	});*/
+	
+	localStorage.setItem("reports", newObj);
+	var temp = localStorage.getItem("reports");
+	console.log(JSON.stringify(temp));
+	alert("Saved the report");
 }
 
 function createMapMenu(controlDiv, map) {
@@ -168,4 +221,19 @@ function div_show() {
 
 function div_hide() {
 	document.getElementById('reportPopup').style.display = "none";
+}
+
+//Read the saved reports from the json file
+//Taken from https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+function readReports(callback) {
+	var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'js/reports.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
 }
