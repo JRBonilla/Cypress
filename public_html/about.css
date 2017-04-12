@@ -1,35 +1,23 @@
 body {
-    background: url("background.jpg") no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
 }
 
-form {
-    border: 3px solid #f1f1f1;
+p.about-us {
+    padding: 10px;
 }
 
-
-@media screen and (max-width: 1066px) {
-    body {
-        background-size: 300%;
-    }
+.description {
+    font-size: 13.5px;
+    text-align: center;
+    animation-duration: 2.5s;
+    line-height: 175%;
 }
 
-@media screen and (max-width: 680px) {
-    .navbar {
-        margin-top: 10%;
-    }
-}
-
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+.questions {
+    font-size: 13.5px;
+    text-align: center;
+    animation-duration: 2.5s;
+    line-height: 175%;
 }
 
 .container, .navbar {
@@ -64,23 +52,18 @@ ul.myNavBar li a {
 	text-decoration: none;
 }
 
-ul.myNavBar li.icon {
-	display: none;
-	font-size: 30px;
-}
-
 #navbar-text {
-    color: #ffffff;
+    color: #202020;
     margin-left: 1px;
-}
-
-#navbar-text:hover {
-    color: #eeeeee;
 }
 
 #logo {
     float: left;
     max-width: 35px;
+}
+
+#navbar-text:hover {
+    color: #000000;
 }
 
 a.nav-button {
@@ -104,55 +87,25 @@ a.nav-button::after {
 
 a.nav-button:hover::after {
 	width: 100%;
-	border-bottom: 2px solid #fefefe;
+	border-bottom: 2px solid #0e0e0e;
 }
 
 #title {
-    font-family: 'Raleway', sans-serif;
     font-weight: bold;
-    font-size: 350%;
+    font-size: 375%;
+}
 
-    text-align: center;
-    vertical-align: middle;
-    margin-top: 1%;
+#twitter {
     animation-duration: 1.5s;
 }
 
-#title-text {
-    margin-top: 8%;
-    color: #ffffff;
-}
-
-#slogan {
-    font-size: 50%;
-    animation-duration: 2.0s;
-    color: #212121;
-}
-
-#login-div {
-    text-align: center;
-    margin-top: 5.5%;
-    animation-duration: 2.5s;
-}
-
-.general-button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #00ce75;
-    color: #ffffff;
-    font-family: 'Nunito', sans-serif;
+button {
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid;
+    padding: 5px 10px;
+    font-size: 12px;
     font-weight: bold;
-    font-size: 15px;
-    border-radius: 2px;
-    transition-duration: 0.5s;
-}
-
-.general-button:hover {
-    background-color: #00af63;
-    color: #f4f4f4;
-    /*-webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);*/
 }
 
 .login-container {
@@ -172,6 +125,25 @@ a.nav-button:hover::after {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
+}
+
+#login-div {
+    text-align: center;
+    margin-top: 5.5%;
+    animation-duration: 2.5s;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+form {
+    border: 3px solid #f1f1f1;
 }
 
 /* Modal Content/Box */
@@ -200,14 +172,22 @@ a.nav-button:hover::after {
     cursor: pointer;
 }
 
-.footer-div {
-    background-color: #191919;
-    margin-top: 12%;
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
-    overflow: hidden;
-    text-align: left;
-    color: #a7a7a7;
-    padding-top: 10px;
+.general-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00ce75;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 2px;
+    transition-duration: 0.5s;
+}
+
+.general-button:hover {
+    background-color: #00af63;
+    color: #f4f4f4;
+    /*-webkit-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 47px -10px rgba(0,0,0,0.75);*/
 }

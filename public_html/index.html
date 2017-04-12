@@ -7,83 +7,59 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="style.css"/>
 	<link rel="stylesheet" href="animate.css"/>
-	<link href="https://fonts.googleapis.com/css?family=Lato|Raleway:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Nunito|Raleway:700" rel="stylesheet">
 	<link rel="icon" type="image/png" href="logo.png"/>
-	
-	<!-- JQuery and Bootstrap links -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	
-	<!-- Custom JS file link -->
-	<script src="all_functions.js"></script>
-	
 </head>
-<body class="container">
-	<nav class="navbar navbar-default animated fadeInDown">
-		<div class="container-fluid">
-		<div class="navbar-header">
-			<a id="navbar-text" class="navbar-brand" href="#">Cypress</a>
-		</div>
-		<ul class="nav navbar-nav myNavBar">
-			<li><a id="navbar-text" class="nav-button" href="#">Home</a></li>
-			<li><a id="navbar-text" class="nav-button" href="#">Page 1</a></li>
-			<li><a id="navbar-text" class="nav-button" href="#">Page 2</a></li>
-			<li><a id="navbar-text" class="nav-button" href="#">About</a></li>
-		</ul>
-		</div>
-	</nav>
+<body>
 	<div class="container">
-		<div id="title">
-			<p id="title-text" class="animated fadeInUp">Welcome to Cypress</p>
-			<p id="slogan" class="animated fadeInUp">Improving Toronto one step at a time</p>
-		</div>
-
-		<div id="login-div" class="animated fadeInDown">
-			<button onclick="document.getElementById('login-form').style.display='block'" class="login">Login</button><br/><br/>
-			<button onclick="document.getElementById('signup-form').style.display='block'" class="signup">Signup</button>
-		</div>
-
-		<div id="login-form" class="modal">
-			<form class="modal-content animated fadeInDown" action="/action_page.php">
-				<div class="login-container">
-					<span onclick="document.getElementById('login-form').style.display='none'" class="close" title="Close">&times;</span>
-	      			<label><b>Username</b></label>
-	      			<input type="text" placeholder="Enter Username" name="uname" required>
-	      			<label><b>Password</b></label>
-	      			<input type="password" placeholder="Enter Password" name="psw" required>
-	      			<button class="login" type="submit">Login</button>
-	      			<input type="checkbox" checked="checked"> Remember me
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="index.html"><img src="logo.png" id="logo"></a>
+					<a id="navbar-text" class="navbar-brand" href="index.html">Cypress</a>
 				</div>
-
-	    		<div class="login-container">
-	      			<button class="login" type="button" onclick="document.getElementById('login-form').style.display='none'" class="cancelbtn">Cancel</button>
-	      			<span class="psw"><a href="#">Forgot password?</a></span>
-	    		</div>
-  			</form>
-		</div>
-
-		<!-- The Modal (contains the Sign Up form) -->
-		<div id="signup-form" class="modal">
-			<form class="modal-content animated fadeInDown" action="/action_page.php">
-				<div class="login-container">
-					<span onclick="document.getElementById('signup-form').style.display='none'" class="close" title="Close Modal">&times;</span>
-					<label><b>Email</b></label>
-					<input type="text" placeholder="Enter Email" name="email" required>
-
-					<label><b>Password</b></label>
-					<input type="password" placeholder="Enter Password" name="psw" required>
-
-					<label><b>Repeat Password</b></label>
-					<input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-					<input type="checkbox" checked="checked"> Remember me
-					<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-
-					<div class="clearfix">
-						<button type="button" onclick="document.getElementById('signup-form').style.display='none'" class="login">Cancel</button>
-						<button type="submit" class="signup">Sign Up</button>
-					</div>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myTopNav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="myNavBar">
+					<ul class="nav navbar-nav myNavBar">
+						<li><a id="navbar-text" class="nav-button" href="about.html">About</a></li>
+						<li><a id="navbar-text" class="nav-button" href="faq.html">FAQ</a></li>
+						<li><a onclick="document.getElementById('login-form').style.display='block'" id="navbar-text" class="nav-button" href="#">Login</a></li>
+					</ul>
 				</div>
-			</form>
+			</div>
+		</nav>
+		<div class="container">
+			<div id="title">
+				<p id="title-text" class="animated fadeInUp">Welcome to Cypress</p>
+				<p id="slogan" class="animated fadeInUp">Improving Toronto one step at a time</p>
+			</div>
+
+			<div id="login-div" class="animated fadeIn">
+				<button onclick="document.getElementById('login-form').style.display='block'" class="general-button">Login</button>
+			</div>
+
+			<div id="login-form" class="modal">
+				<form class="modal-content animated fadeInDown" action="map.html">
+					<div class="login-container">
+						<span onclick="document.getElementById('login-form').style.display='none';" class="close" title="Close">&times;</span>
+		      			<label><b>Username</b></label>
+		      			<input type="text" placeholder="Enter Username" name="uname" required>
+		      			<label><b>Password</b></label>
+		      			<input type="password" placeholder="Enter Password" name="psw" required>
+		      			<button class="general-button" type="submit">Login</button>
+		      			<input type="checkbox" checked="checked"> Remember me
+						<br/><br/>
+		      			<button class="general-button" type="button" onclick="document.getElementById('login-form').style.display='none'">Cancel</button>
+		      			<span class="psw"><a href="#">Forgot password?</a></span>
+		    		</div>
+	  			</form>
+			</div>
 		</div>
 	</div>
 </body>
