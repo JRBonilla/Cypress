@@ -1,3 +1,1 @@
-{"users":[
-    { "email":"jonathan.bonilla@ryerson.ca", "password":"examplePassword" }
-]}
+users = '[{"email" : "admin", "password" : "0000"},{"email" : "jonathan.bonilla@ryerson.ca", "password" : "examplePassword"}]';

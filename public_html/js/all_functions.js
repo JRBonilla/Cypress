@@ -12,8 +12,16 @@ function getCivil(id, pass){
 	}
 }
 
-function checkPass(id, pass){
-	$.getJSON("test.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
-	});
+function checkPass(form){
+	var mydata = JSON.parse(users);
+	
+	var i;
+	for (i in mydata) {
+		if(form.uname.value == mydata[i].email && form.psw.value == mydata[i].password){
+			window.alert("Success!!"); // replace with success
+			return true
+		}
+		
+	}
+	window.alert("Failure"); // replace with failure
 }
