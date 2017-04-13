@@ -129,7 +129,9 @@ function callPHP(newObj) {
 	//httpc.setRequestHeader("Content-Length", newObj.length);
 	
 	httpc.onreadystatechange = function() {
+		console.log("status="+httpc.status + "; readyState=" + httpc.readyState);
 		if(httpc.readyState == 4 && httpc.status == 200) {
+			console.log("Here");
 			alert("Saved the updated JSON to a file");
 		}
 	}
