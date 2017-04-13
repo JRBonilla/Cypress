@@ -49,11 +49,6 @@ function initMap() {
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
 	
 	//Test markers
-	//0047ba = blue
-	//ba0303 = red
-	//40454f = grey
-	//00ba00 = green
-	
 	//var temp = addMarker(43.504736854976954, -79.969482421875, "test1", "40454f");
 	//addMarker(43.71950494269107, -79.365234375, "test2", "0047ba");
 	//addMarker(43.824619821317356, -79.1070556640625, "test3", "ba0303");
@@ -62,8 +57,6 @@ function initMap() {
 	
 	//Read the reports from the json file
 	readReports(function(response) {
-		//console.log("The contents of reports.json");
-		//console.log(response);
 		reportJSON = JSON.parse(response);
 		displayMarkers(reportJSON);
 	});
@@ -88,6 +81,18 @@ function saveReport() {
 	var description = document.getElementById("description").value;
 	var probType = document.getElementById("type").value;
 	var reportStatus = document.getElementById("status").value;
+	if(reportStatus == "red") {
+		reportStatus = "ba0303"; //Red
+	}
+	else if(reportStatus == "yellow") {
+		reportStatus = "f1ff30"; //Yellow
+	}
+	else if(reportStatus == "orange") {
+		reportStatus = "ff8930"; //orange
+	}
+	else {
+		reportStatus = "00ba00"; //Green
+	}
 	var email = document.getElementById("email").value
 	var newObj = {report: [{"reportStatus": reportStatus},{"probType": probType},{"description": description},{"email": email},{"lat": latJSON},{"lng": lngJSON}]};
 	resetForm();
@@ -103,10 +108,34 @@ function saveReport() {
 		console.log("The file was saved!");
 	});*/
 	
+	callPHP(newObj);
+	
 	localStorage.setItem("reports", newObj);
 	var temp = localStorage.getItem("reports");
 	console.log(JSON.stringify(temp));
 	alert("Saved the report");
+}
+
+function callPHP(newObj) {
+	//var data = {info: newObj};
+	//$.post("js/fileWrite.php", data);
+	
+	var httpc = new XMLHttpRequest();
+	var url = "js/fileWrite.php";
+	var temp = "info="+newObj;
+	httpc.open("POST", url, true);
+	
+	httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+	//httpc.setRequestHeader("Content-Length", newObj.length);
+	
+	httpc.onreadystatechange = function() {
+		if(httpc.readyState == 4 && httpc.status == 200) {
+			alert("Saved the updated JSON to a file");
+		}
+	}
+	//httpc.open('POST', url, true);
+	httpc.send(temp);
+	
 }
 
 function createMapMenu(controlDiv, map) {
