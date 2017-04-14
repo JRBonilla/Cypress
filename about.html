@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cypress - About</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito|Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="animate.css"/>
+	<link rel="stylesheet" href="style.css"/>
+	<link rel="icon" type="image/png" href="logo.png"/>
+	<script type="text/javascript" src="js/users.json"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+</head>
+<body class="container" id="about-or-faq">
+	<!-- Navigation bar -->
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html"><img src="logo.png" id="logo"></a>
+				<a id="navbar-text" class="navbar-brand" href="index.html">Cypress</a>
+			</div>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-list">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navigation-list">
+				<ul class="nav navbar-nav navbar-right myNavBar">
+					<li><a id="navbar-text" class="nav-button" href="about.html">About</a></li>
+					<li><a id="navbar-text" class="nav-button" href="faq.html">FAQ</a></li>
+					<li><a onclick="document.getElementById('login-form').style.display='block'" id="navbar-text" class="nav-button" href="#">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- About us -->
+    <p class="about-us">
+        <center><span id="title"><p class="animated fadeInUp">About.</p></span></center><br><br>
+        <div class="description animated fadeInUp">
+            <p>
+                Cypress is an automated web app designed to help the people of Toronto track and report problems<br>
+				they notice on the street, allowing the city to keep track of issues affecting everyday citizens. Cypress will allow citizens to pinpoint problems on a map<br>
+                and accurately describe the problem. Citizens can also login to view  problems in a specfic area.<br><br>
+                Contact Information<br>
+                Phone number: 1-800-TORONTO (867 6686)<br>
+                Email: <a href="#">cypress@toronto.ca</a><br><br>
+            </p>
+        </div>
+        <center><a href="https://twitter.com/torontocomms"><button type="button" id="twitter-button" class="animation fadeIn"><img src="Twitter-icon.png" height="24" width="24"> Follow us on Twitter</button></a></center>
+    </p>
+
+	<!-- The login form -->
+	<div id="login-form" class="modal">
+		<form name="login" class="modal-content animated fadeInDown" action="map.html" onsubmit="return authenticate()">
+			<span onclick="document.getElementById('login-form').style.display='none';" class="close" title="Close">&times;</span>
+			<label><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+			<label><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+			<button class="general-button" type="submit" id="login-button">Login</button>
+			<input type="checkbox" checked="checked"> Remember me
+			<br/><br/>
+			<button class="general-button" type="button" onclick="document.getElementById('login-form').style.display='none'">Cancel</button>
+			<span class="psw"><a href="#">Forgot password?</a></span>
+		</form>
+	</div>
+</body>
+</html>

@@ -23,10 +23,8 @@ function initMap() {
 			currentLat = position.coords.latitude;
 			currentLng = position.coords.longitude;
 			map.setCenter(pos);
-			
+
 			var infoWindow = new google.maps.InfoWindow({content: "You are here"});
-			
-			
 		},
 		function() {
 			handleLocationError(true, infoWindow, map.getCenter());
@@ -35,33 +33,26 @@ function initMap() {
 	else {
 		handleLocationError(false, infoWindow, map.getCenter());
 	}
-	
+
 	google.maps.event.addListener(map, "rightclick", function(event) {
 		lat = event.latLng.lat();
 		lng = event.latLng.lng();
-		alert("Report location saved at Lat=" + lat + "; Lng=" + lng);
+		currentLat = lat;
+		currentLng = lng;
+		alert("Report location saved at Latitude = " + lat + "; Longitude = " + lng);
 	});
-	
+
 	controlDiv = document.createElement('div');
 	control = new createMapMenu(controlDiv, map);
-	
+
 	controlDiv.index = 1;
 	map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
-	
-	//Test markers
-	//var temp = addMarker(43.504736854976954, -79.969482421875, "test1", "40454f");
-	//addMarker(43.71950494269107, -79.365234375, "test2", "0047ba");
-	//addMarker(43.824619821317356, -79.1070556640625, "test3", "ba0303");
-	//Change first marker from grey to red
-	//setMarkerColor(temp, "ba0303");
-	
+
 	//Read the reports from the json file
 	readReports(function(response) {
 		reportJSON = JSON.parse(response);
 		displayMarkers(reportJSON);
 	});
-
-	
 }
 
 function displayMarkers(reportJSON) {
@@ -72,22 +63,22 @@ function displayMarkers(reportJSON) {
 		var probType = entry.report[1].probType;
 		var reportStatus = entry.report[0].reportStatus;
 		addMarker(latJSON, lngJSON, description, reportStatus);
-	}); 
+	});
 }
 
 function saveReport() {
 	var latJSON = currentLat;
 	var lngJSON = currentLng;
-	var description = document.getElementById("description").value;
-	var probType = document.getElementById("type").value;
+	var description  = document.getElementById("description").value;
+	var probType 	 = document.getElementById("type").value;
 	var reportStatus = document.getElementById("status").value;
-	if(reportStatus == "red") {
+	if (reportStatus == "red") {
 		reportStatus = "ba0303"; //Red
 	}
-	else if(reportStatus == "yellow") {
+	else if (reportStatus == "yellow") {
 		reportStatus = "f1ff30"; //Yellow
 	}
-	else if(reportStatus == "orange") {
+	else if (reportStatus == "orange") {
 		reportStatus = "ff8930"; //orange
 	}
 	else {
@@ -97,21 +88,30 @@ function saveReport() {
 	var newObj = {report: [{"reportStatus": reportStatus},{"probType": probType},{"description": description},{"email": email},{"lat": latJSON},{"lng": lngJSON}]};
 	resetForm();
 	reportJSON.reports.push(newObj);
-	//console.log(reportJSON);
-	
-	/*var fs = require('fs');
-	fs.writeFile("js/reports.json", newObj, function(error) {
-		if(error) {
-			return console.log(error);
+
+	callPHP(reportJSON);
+}
+
+function closeForm() {
+	document.getElementById('problemReport').style.display='none';
+}
+
+function callPHP(newObj) {
+	var httpc = new XMLHttpRequest();
+	var url = "js/fileWrite.php";
+	var temp = "info=" + (JSON.stringify(newObj));
+	httpc.open("POST", url, true);
+
+	httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	httpc.setRequestHeader("Content-Length", temp.length);
+
+	httpc.onreadystatechange = function() {
+		console.log("status="+httpc.status + "; readyState=" + httpc.readyState);
+		if(httpc.readyState == 4 && httpc.status == 200) {
 		}
-		
-		console.log("The file was saved!");
-	});*/
-	
-	localStorage.setItem("reports", newObj);
-	var temp = localStorage.getItem("reports");
-	console.log(JSON.stringify(temp));
-	alert("Saved the report");
+	}
+	httpc.send(temp);
+	window.location.reload(true);
 }
 
 function createMapMenu(controlDiv, map) {
@@ -122,12 +122,13 @@ function createMapMenu(controlDiv, map) {
     controlUI.style.borderRadius = '3px';
     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
     controlUI.style.cursor = 'pointer';
-    controlUI.style.marginBottom = '22px';
+	controlUI.style.marginBottom = '22px';
+    controlUI.style.marginTop = '4px';
     controlUI.style.textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
 	console.log(controlDiv);
     controlDiv.appendChild(controlUI);
-	
+
 	// Set CSS for the control interior.
     var controlText = document.createElement('div');
     controlText.style.color = 'rgb(25,25,25)';
@@ -138,11 +139,9 @@ function createMapMenu(controlDiv, map) {
     controlText.style.paddingRight = '5px';
     controlText.innerHTML = 'Save Report';
     controlUI.appendChild(controlText);
-	
+
 	controlUI.addEventListener('click', function() {
 		if(lat != null && lng != null) {
-			//div_show();
-			alert("Stored new report");
 			popupReport.style.display = "block";
 		}
 		else {
@@ -161,37 +160,17 @@ window.onclick = function(event) {
 	}
 }
 
-/*
-getting custom markers from google
-   var pinColor = "FE7569";
-    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
-        new google.maps.Size(21, 34),
-        new google.maps.Point(0,0),
-        new google.maps.Point(10, 34));
-    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
-        new google.maps.Size(40, 37),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(12, 35));
-		
-		    var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(0,0), 
-                map: map,
-                icon: pinImage,
-                shadow: pinShadow
-            });
-https://support.google.com/fusiontables/answer/2679986
-*/
 function addMarker(Lat, Lng, title, color) {
 	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + color,
 		new google.maps.Size(21,34),
 		new google.maps.Point(0,0),
 		new google.maps.Point(10,34));
-	
+
 	var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
 		new google.maps.Size(40,37),
 		new google.maps.Point(0,0),
 		new google.maps.Point(12,35));
-	
+
 	var marker = new google.maps.Marker({
 		position: new google.maps.LatLng(Lat, Lng),
 		map: map,
@@ -200,7 +179,7 @@ function addMarker(Lat, Lng, title, color) {
 		animation: google.maps.Animation.DROP,
 		title: title
 	});
-	
+
 	return marker;
 }
 
@@ -209,7 +188,7 @@ function setMarkerColor(marker, color) {
 		new google.maps.Size(21,34),
 		new google.maps.Point(0,0),
 		new google.maps.Point(10,34));
-	
+
 	marker.setIcon(pinImage);
 }
 
@@ -232,13 +211,13 @@ function div_hide() {
 //Taken from https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
 function readReports(callback) {
 	var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'js/reports.json', true); // Replace 'my_data' with the path to your file
+    xobj.overrideMimeType("application/json");
+	xobj.open('GET', 'js/reports.json', true); // Replace 'my_data' with the path to your file
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
             callback(xobj.responseText);
           }
     };
-    xobj.send(null);  
+	xobj.send();
 }

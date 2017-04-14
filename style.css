@@ -1,0 +1,328 @@
+#home-page {
+    background: url("background.jpg") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#about-or-faq {
+    font-family: 'Montserrat', sans-serif;
+}
+
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00ce75;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 2px;
+    transition-duration: 0.5s;
+}
+
+input[type=submit]:hover {
+    background-color: #00af63;
+    color: #f4f4f4;
+}
+
+#map-container {
+    position: relative;
+}
+
+#map {
+    position: absolute;
+    top: 13%;
+    right: 0;
+    bottom: 0%;
+    left: 0;
+}
+
+.container, .navbar {
+    background-color: transparent;
+}
+
+.navbar {
+    border: none;
+    margin-top: 1%;
+    animation-duration: 1.5s;
+}
+
+.navbar-header {
+    padding-top: 20px;
+    list-style: none;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+}
+
+ul.myNavBar {
+    padding-top: 15px;
+    list-style: none;
+    overflow: hidden;
+    letter-spacing: 1px;
+}
+
+ul.myNavBar li a {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+#home-navbar-text {
+    color: #ffffff;
+    margin-left: 1px;
+}
+
+#home-navbar-text:hover {
+    color: #eeeeee;
+}
+
+#navbar-text {
+    color: #202020;
+    margin-left: 1px;
+}
+
+#navbar-text:hover {
+    color: #000000;
+}
+
+.home-nav-button {
+    border: 1px solid transparent;
+    transition-duration: 0.2s;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+
+.home-nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid transparent;
+    transition: 0.4s;
+}
+
+.home-nav-button:hover::after {
+    width: 100%;
+    border-bottom: 2px solid #fefefe;
+}
+
+.nav-button {
+    border: 1px solid transparent;
+    transition-duration: 0.2s;
+    animation-duration: 1s;
+    animation-delay: 0.3s;
+    font-weight: bold;
+    transition: 0.5s ease-in-out;
+}
+
+.nav-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid transparent;
+    transition: 0.4s;
+}
+
+.nav-button:hover::after {
+    width: 100%;
+    border-bottom: 2px solid #0e0e0e;
+}
+
+#content {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 350%;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 1%;
+    animation-duration: 1.5s;
+}
+
+#title-text {
+    margin-top: 8%;
+    color: #ffffff;
+}
+
+#slogan {
+    font-size: 50%;
+    animation-duration: 2.0s;
+    color: #212121;
+}
+
+#button-div {
+    text-align: center;
+    margin-top: 5.5%;
+    animation-duration: 2.5s;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 375%;
+}
+
+p.about-us {
+    padding: 10px;
+}
+
+.description {
+    font-size: 13.5px;
+    text-align: center;
+    line-height: 175%;
+}
+
+.reports {
+    font-size: 13.5px;
+    text-align: left;
+    line-height: 135%;
+    margin-left: 25%;
+}
+
+.questions {
+    font-size: 13.5px;
+    text-align: center;
+    line-height: 175%;
+}
+
+.general-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #00ce75;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 2px;
+    transition-duration: 0.5s;
+}
+
+.general-button:hover {
+    background-color: #00af63;
+    color: #f4f4f4;
+}
+
+.map-button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 2px;
+    background-color: #cf002b;
+    color: #ffffff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 2px;
+    transition-duration: 0.5s;
+}
+
+.map-button:hover {
+    background-color: #ba0027;
+    color: #f4f4f4;
+}
+
+#twitter-button {
+    animation-duration: 1.5s;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    padding: 16px;
+    background-color: #fefefe;
+    font-family: 'Nunito', sans-serif;
+    margin: 5px auto;
+    /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* The Close Button */
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+
+/* Close button on hover */
+
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+
+/* Cypress logo */
+
+#logo {
+    float: left;
+    max-width: 35px;
+}
+
+@media screen and (max-width: 1066px) {
+    body {
+        background-size: 300%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .navbar {
+        margin-top: 10%;
+    }
+}
